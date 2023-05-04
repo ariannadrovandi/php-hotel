@@ -53,6 +53,11 @@ $hotels = [
     <title>php-hotel</title>
 </head>
 <body class="bg-info-subtle">
-    
+    <div class="container w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
+        <h1>Hotels</h1>
+        <table class="table table-hover">
+            
+        </table>
+    </div>
 </body>
 </html>
