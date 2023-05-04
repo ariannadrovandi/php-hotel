@@ -40,6 +40,7 @@ $hotels = [
 
 ];
 
+
 if (!empty($GET_['search'])) {
     $filteredHotels = [];
     $category = $_GET['search'];
