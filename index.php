@@ -56,7 +56,16 @@ $hotels = [
     <div class="container w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
         <h1>Hotels</h1>
         <table class="table table-hover">
-            
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Parking</th>
+                    <th>Vote</th>
+                    <th>Distance to center</th>
+                </tr>
+            </thead>
+           
         </table>
     </div>
 </body>
