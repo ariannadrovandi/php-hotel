@@ -60,12 +60,20 @@ $hotels = [
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Parking</th>
-                    <th>Vote</th>
-                    <th>Distance to center</th>
+                    <th class="text-center">Parking</th>
+                    <th class="text-center">Vote</th>
+                    <th class="text-center">Distance to center</th>
                 </tr>
             </thead>
-           
+            <tbody>
+                <tr <?php foreach($hotels as $hotel) { ?>>
+                    <td class="fw-semibold"><?php echo $hotel['name'] ?></td>
+                    <td class="fw-light"> <?php echo $hotel['description'] ?></td>
+                    <td class="fw-light text-center small"> <?php echo $hotel['parking'] ?></td>
+                    <td class="fw-light text-center small"> <?php echo $hotel['vote'] ?></td>
+                    <td class="fw-light text-center small"> <?php echo $hotel['distance_to_center'] ?></td>
+                </tr <?php } ?>>
+            </tbody>
         </table>
     </div>
 </body>
