@@ -40,6 +40,19 @@ $hotels = [
 
 ];
 
+if (!empty($GET_['search'])) {
+    $filteredHotels = [];
+    $category = $_GET['search'];
+    for($i = 0; $i < count($hotels); $i++){
+        if($hotels[$i]['parking'] == $category){
+            $filteredHotels[] = $hotels[$i];
+        }
+    }
+}else{
+    $filteredHotels = $hotels;
+};
+
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +68,16 @@ $hotels = [
 <body class="bg-info-subtle">
     <div class="container w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
         <h1>Hotels</h1>
+        <!-- select -->
+        <form class="p-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
+            <select name="search">
+                <option selected>Menu</option>
+                <option value="true">Parking</option>
+                <option value="false">No parking</option>
+            </select>
+            <button class="btn bg-body-secondary border" type="submit">Send</button>
+        </form>
+        <!-- table -->
         <table class="table table-hover">
             <thead>
                 <tr>
