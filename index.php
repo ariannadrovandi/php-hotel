@@ -66,8 +66,8 @@ if (!empty($GET_['search'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>php-hotel</title>
 </head>
-<body class="bg-info-subtle">
-    <div class="container w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
+<body class="bg-info">
+    <div class="container bg-info-subtle rounded-4 w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
         <h1>Hotels</h1>
         <!-- select -->
         <form class="p-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
