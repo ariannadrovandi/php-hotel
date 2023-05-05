@@ -40,19 +40,30 @@ $hotels = [
 
 ];
 
-
-if (!empty($GET_['search'])) {
-    $filteredHotels = [];
-    $category = $_GET['search'];
-    for($i = 0; $i < count($hotels); $i++){
-        if($hotels[$i]['parking'] == $category){
-            $filteredHotels[] = $hotels[$i];
+$filteredHotels = $hotels;
+//parking
+if (!empty($GET_['parking'])) { //verifico se c'è la chiave 
+    $tempHotels = []; //array temporaneo 
+    $parking = ($_GET['parking'] === 'si') ? true : false; //true se parking è si 
+    foreach($filteredHotels as $hotel){
+        if($hotel ['parking'] === $parking){ //se parking dell' hotel è = $parking (es: true)
+            $tempHotels[] = $hotel; // $filteredHotels = a hotel con (es: true)
         }
     }
-}else{
-    $filteredHotels = $hotels;
+    $filteredHotels = $tempHotels;
 };
 
+//vote
+if (!empty($GET_['vote'])) { 
+    $tempHotels = [];
+    $vote = $_GET['vote']; 
+    foreach($filteredHotels as $hotel){
+        if($hotel ['vote'] >= $vote){ 
+            $tempHotels[] = $hotel; 
+        }
+    }
+    $filteredHotels = $tempHotels;
+};
 
 ?>
 
@@ -71,16 +82,24 @@ if (!empty($GET_['search'])) {
     <div class="container bg-info-subtle rounded-4 w-75 mt-5 d-flex flex-column justify-content-center align-items-center">
         <h1>Hotels</h1>
         <!-- select -->
-        <form class="p-3" action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
-            <select name="search">
-                <option selected>Menu</option>
-                <option value="true">Parking</option>
-                <option value="false">No parking</option>
+        <form class="p-3 d-flex flex-row" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
+            <select class="form-control" name="parking">
+                <option selected>Select parking</option>
+                <option value="si">Parking</option>
+                <option value="no">No parking</option>
             </select>
-            <button class="btn bg-body-secondary border" type="submit">Send</button>
+            <select class="form-control" name="vote">
+                <option selected>Select vote</option>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+            <button class="btn bg-body-secondary border" type="submit">Search</button>
         </form>
         <!-- table -->
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -91,7 +110,7 @@ if (!empty($GET_['search'])) {
                 </tr>
             </thead>
             <tbody>
-                <tr <?php foreach($hotels as $hotel) { ?>>
+                <tr <?php foreach($filteredHotels as $hotel) { ?>>
                     <td class="fw-semibold"><?php echo $hotel['name'] ?></td>
                     <td class="fw-light"> <?php echo $hotel['description'] ?></td>
                     <td class="fw-light text-center small"> <?php echo $hotel['parking'] ?></td>
