@@ -42,7 +42,7 @@ $hotels = [
 
 $filteredHotels = $hotels;
 //parking
-if (!empty($GET_['parking'])) { //verifico se c'è la chiave 
+if (!empty($_GET['parking'])) { //verifico se c'è la chiave 
     $tempHotels = []; //array temporaneo 
     $parking = ($_GET['parking'] === 'si') ? true : false; //true se parking è si 
     foreach($filteredHotels as $hotel){
@@ -54,7 +54,7 @@ if (!empty($GET_['parking'])) { //verifico se c'è la chiave
 };
 
 //vote
-if (!empty($GET_['vote'])) { 
+if (!empty($_GET['vote'])) { 
     $tempHotels = [];
     $vote = $_GET['vote']; 
     foreach($filteredHotels as $hotel){
@@ -111,11 +111,21 @@ if (!empty($GET_['vote'])) {
             </thead>
             <tbody>
                 <tr <?php foreach($filteredHotels as $hotel) { ?>>
-                    <td class="fw-semibold"><?php echo $hotel['name'] ?></td>
-                    <td class="fw-light"> <?php echo $hotel['description'] ?></td>
-                    <td class="fw-light text-center small"> <?php echo $hotel['parking'] ?></td>
-                    <td class="fw-light text-center small"> <?php echo $hotel['vote'] ?></td>
-                    <td class="fw-light text-center small"> <?php echo $hotel['distance_to_center'] ?></td>
+                    <td class="fw-semibold">
+                        <?php echo $hotel['name'] ?>
+                    </td>
+                    <td class="fw-light">
+                        <?php echo $hotel['description'] ?>
+                    </td>
+                    <td class="fw-light text-center small">
+                        <?php echo $hotel['parking'] ?>
+                    </td>
+                    <td class="fw-light text-center small">
+                        <?php echo $hotel['vote'] ?>
+                    </td>
+                    <td class="fw-light text-center small">
+                        <?php echo $hotel['distance_to_center'] ?>
+                    </td>
                 </tr <?php } ?>>
             </tbody>
         </table>
